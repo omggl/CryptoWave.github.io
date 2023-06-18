@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog o kryptoměnách</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
     /* Resetování výchozích stylů prohlížeče */
     * {
@@ -16,37 +17,36 @@
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.light-mode {
+      background-color: #f5f5f5;
       color: #333;
     }
 
-    header {
+    .header {
       background-color: #f5f5f5;
       padding: 20px;
+      text-align: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    nav ul {
-      list-style-type: none;
-    }
-
-    nav ul li {
-      display: inline;
-      margin-right: 10px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
+    .header .btn-toggle-mode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
       color: #333;
-    }
-
-    nav ul li a:hover {
-      color: #555;
     }
 
     .hero {
       background-image: url('background.jpg');
       background-size: cover;
       background-position: center;
-      color: #fff;
       text-align: center;
       padding: 100px;
     }
@@ -65,76 +65,91 @@
       margin-top: 20px;
     }
 
-    .latest-posts {
-      padding: 40px;
-    }
-
-    .latest-posts h3 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .post {
-      margin-bottom: 20px;
-    }
-
-    .post h4 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .post p {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    .post a {
+    .btn-posts {
+      display: inline-block;
+      background-color: #f5f5f5;
       color: #333;
+      padding: 10px 20px;
       text-decoration: none;
-    }
-
-    .post a:hover {
-      color: #555;
+      margin-top: 20px;
     }
 
     footer {
       background-color: #f5f5f5;
       padding: 20px;
       text-align: center;
-      color: #777;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    body.dark-mode .header {
+      background-color: #555;
+    }
+
+    body.dark-mode .header .btn-toggle-mode {
+      color: #fff;
+    }
+
+    body.dark-mode .hero {
+      background-color: #222;
+    }
+
+    body.dark-mode .hero h2 {
+      color: #fff;
+    }
+
+    body.dark-mode .btn {
+      background-color: #fff;
+      color: #333;
+    }
+
+    body.dark-mode .btn-posts {
+      background-color: #555;
+      color: #fff;
+    }
+
+    body.dark-mode footer {
+      background-color: #555;
+      color: #fff;
     }
   </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#" class="active">Domů</a></li>
-        <li><a href="post.html">Články</a></li>
-        <li><a href="#">O nás</a></li>
-        <li><a href="#">Kontakt</a></li>
-      </ul>
-    </nav>
+<body class="light-mode">
+  <header class="header">
+    <button class="btn-toggle-mode" onclick="toggleMode()">
+      <i class="fas fa-sun"></i>
+    </button>
     <h1>Blog o kryptoměnách</h1>
   </header>
   <section class="hero">
     <h2>Vítejte na našem blogu o kryptoměnách!</h2>
-    <p>Čtěte naše články a zjistěte více o nejnovějších trendech, investicích a technologiích v oblasti kryptoměn.</p>
-    <a href="post.html" class="btn">Přečíst více</a>
-  </section>
-  <section class="latest-posts">
-    <h3>Nejnovější příspěvky</h3>
-    <div class="post">
-      <h4><a href="post1.html">Návrat Bitcoinu na vrchol</a></h4>
-      <p>Bitcoin nedávno dosáhl nového rekordu a investoři jsou nadšení. Přečtěte si více o tom, co to znamená pro kryptoměnový trh.</p>
-    </div>
-    <div class="post">
-      <h4><a href="post.html">Ethereum 2.0 a jeho výhody</a></h4>
-      <p>Ethereum 2.0 je významná aktualizace této populární kryptoměny. Zjistěte, jaké jsou jeho hlavní výhody a co to znamená pro uživatele.</p>
-    </div>
+    <p id="introText">Čtěte naše články a zjistěte více o nejnovějších trendech, investicích a technologiích v oblasti kryptoměn.</p>
+    <a href="post.html" class="btn-posts">Přejít na příspěvky</a>
   </section>
   <footer>
     <p>&copy; 2023 Blog o kryptoměnách. Všechna práva vyhrazena.</p>
   </footer>
+
+  <script>
+    function toggleMode() {
+      const body = document.querySelector('body');
+      const header = document.querySelector('.header');
+      const hero = document.querySelector('.hero');
+      const btnToggleMode = document.querySelector('.btn-toggle-mode');
+      const footer = document.querySelector('footer');
+      const sunIcon = '<i class="fas fa-sun"></i>';
+      const moonIcon = '<i class="fas fa-moon"></i>';
+
+      body.classList.toggle('dark-mode');
+      header.classList.toggle('dark-mode');
+      hero.classList.toggle('dark-mode');
+      btnToggleMode.innerHTML = body.classList.contains('dark-mode') ? sunIcon : moonIcon;
+      footer.classList.toggle('dark-mode');
+    }
+  </script>
 </body>
 </html>

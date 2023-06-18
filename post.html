@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Příspěvky - Blog o kryptoměnách</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Resetování výchozích stylů prohlížeče */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Základní styly pro hlavní strukturu */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.light-mode {
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .header {
+      background-color: #f5f5f5;
+      padding: 20px;
+      text-align: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .header .btn-toggle-mode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .posts {
+      margin: 20px;
+    }
+
+    .post {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .post-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .post-title:hover {
+      color: #666;
+    }
+
+    .post-content {
+      font-size: 16px;
+      color: #777;
+    }
+
+    footer {
+      background-color: #f5f5f5;
+      padding: 20px;
+      text-align: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    body.dark-mode .header {
+      background-color: #555;
+    }
+
+    body.dark-mode .header .btn-toggle-mode {
+      color: #fff;
+    }
+
+    body.dark-mode .posts {
+      background-color: #222;
+    }
+
+    body.dark-mode .post {
+      background-color: #333;
+      color: #fff;
+    }
+
+    body.dark-mode .post-title {
+      color: #fff;
+    }
+
+    body.dark-mode .post-content {
+      color: #bbb;
+    }
+
+    body.dark-mode footer {
+      background-color: #555;
+      color: #fff;
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <header class="header">
+    <button class="btn-toggle-mode" onclick="toggleMode()">
+      <i class="fas fa-sun"></i>
+    </button>
+    <h1>Příspěvky - Blog o kryptoměnách</h1>
+  </header>
+
+  <div class="posts">
+    <div class="post">
+      <a class="post-link" href="post1.html">
+        <h2 class="post-title">Nadpis příspěvku 1</h2>
+      </a>
+      <p class="post-content">Obsah příspěvku 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+    </div>
+
+    <div class="post">
+      <a class="post-link" href="4 Zajímavé Kryptoměny pro investici.html">
+        <h2 class="post-title">4 Méně Známé, Ale Moderní Kryptoměny Pro Vaše Investice</h2>
+      </a>
+      <p class="post-content">Obsah příspěvku 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+    </div>
+
+    <div class="post">
+      <a class="post-link" href="post3.html">
+        <h2 class="post-title">Nadpis příspěvku 3</h2>
+      </a>
+      <p class="post-content">Obsah příspěvku 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 Blog o kryptoměnách. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script>
+    // Získání aktuálního módu ze storage (default je light mode)
+    const mode = localStorage.getItem('mode') || 'light-mode';
+    applyMode(mode);
+
+    function toggleMode() {
+      const body = document.querySelector('body');
+      const header = document.querySelector('.header');
+      const posts = document.querySelector('.posts');
+      const btnToggleMode = document.querySelector('.btn-toggle-mode');
+      const footer = document.querySelector('footer');
+      const sunIcon = '<i class="fas fa-sun"></i>';
+      const moonIcon = '<i class="fas fa-moon"></i>';
+
+      body.classList.toggle('dark-mode');
+      header.classList.toggle('dark-mode');
+      posts.classList.toggle('dark-mode');
+      btnToggleMode.innerHTML = body.classList.contains('dark-mode') ? sunIcon : moonIcon;
+      footer.classList.toggle('dark-mode');
+
+      // Uložení módu do storage
+      const currentMode = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+      localStorage.setItem('mode', currentMode);
+    }
+
+    function applyMode(mode) {
+      const body = document.querySelector('body');
+      const header = document.querySelector('.header');
+      const posts = document.querySelector('.posts');
+      const btnToggleMode = document.querySelector('.btn-toggle-mode');
+      const footer = document.querySelector('footer');
+      const sunIcon = '<i class="fas fa-sun"></i>';
+      const moonIcon = '<i class="fas fa-moon"></i>';
+
+      body.classList.remove('light-mode', 'dark-mode');
+      header.classList.remove('light-mode', 'dark-mode');
+      posts.classList.remove('light-mode', 'dark-mode');
+      footer.classList.remove('light-mode', 'dark-mode');
+
+      body.classList.add(mode);
+      header.classList.add(mode);
+      posts.classList.add(mode);
+      footer.classList.add(mode);
+
+      btnToggleMode.innerHTML = mode === 'dark-mode' ? sunIcon : moonIcon;
+    }
+  </script>
+</body>
+</html>
