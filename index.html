@@ -149,7 +149,20 @@
       hero.classList.toggle('dark-mode');
       btnToggleMode.innerHTML = body.classList.contains('dark-mode') ? sunIcon : moonIcon;
       footer.classList.toggle('dark-mode');
+
+      // Uložení módu do localStorage
+      const currentMode = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+      localStorage.setItem('mode', currentMode);
     }
+
+    // Načtení módu při načtení stránky
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedMode = localStorage.getItem('mode');
+
+      if (savedMode === 'dark-mode') {
+        toggleMode();
+      }
+    });
   </script>
 </body>
 </html>
