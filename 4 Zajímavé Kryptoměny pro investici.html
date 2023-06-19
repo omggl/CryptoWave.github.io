@@ -116,13 +116,6 @@
       color: #f5f5f5;
     }
 
-    /* Odstranění kružnice za sluncem */
-    .dark-mode .crypto-card img[src$="stellar-image.png"] {
-      filter: none;
-      background-color: transparent;
-      border-radius: 0;
-    }
-
     /* Ikony pro přepínání módu */
     .mode-toggle {
       cursor: pointer;
@@ -132,7 +125,6 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background-color: #f5f5f5;
       position: fixed;
       top: 20px;
       right: 20px;
@@ -141,6 +133,11 @@
 
     .mode-toggle i {
       font-size: 20px;
+    }
+
+    /* Odstranění kružnice za sluncem */
+    .crypto-card img[src$="stellar-image.png"] {
+      background-color: transparent;
     }
   </style>
 </head>
@@ -168,15 +165,14 @@
     </div>
 
     <div class="crypto-card">
-      <h2>Zilliqa (ZIL)</h2>
-      <img src="zilliqa-image.png" alt="Zilliqa" />
-      <p>Zilliqa je škálovatelná blockchainová platforma, která se zaměřuje na řešení problémů výkonu a škálovatelnosti, s nimiž se běžně potýkají blockchainové sítě. Zilliqa používá inovativní technologii nazvanou "sharding", která umožňuje sítí škálovat lineárně s rostoucím počtem uživatelů. Tímto způsobem Zilliqa nabízí vysokou propustnost a rychlost transakcí, což ji činí atraktivní pro podnikové aplikace a decentralizované finance.</p>
+      <h2>Stellar (XLM)</h2>
+      <img src="stellar-image.png" alt="Stellar" />
+      <p>Stellar je open-source platforma pro převody peněz, která usnadňuje rychlé a levné převody mezi různými měnami. Stellar se zaměřuje na financování a mikroplatební trhy a snaží se poskytovat finanční služby i lidem ve znevýhodněných oblastech. Jeho protokol umožňuje vytváření a výměnu tokenů a propojuje jednotlivé účastníky v síti bez centrálnej autority.</p>
     </div>
+  </div>
 
-    <div class="footer">
-      <p>Tento článek je poskytován pouze pro informační účely. Před jakýmkoliv investováním do kryptoměn se poraďte s finančním odborníkem.</p>
-      <p>Vytvořeno s láskou od <a href="https://www.example.com">Cryptoblog</a></p>
-    </div>
+  <div class="footer">
+    <p>2023 &copy; Všechna práva vyhrazena. | <a href="#">Ochrana soukromí</a> | <a href="#">Podmínky užití</a></p>
   </div>
 
   <div class="mode-toggle" onclick="toggleMode()">
@@ -185,8 +181,14 @@
 
   <script>
     function toggleMode() {
-      const body = document.body;
+      const body = document.querySelector("body");
+      const modeToggle = document.querySelector(".mode-toggle");
       body.classList.toggle("dark-mode");
+      if (body.classList.contains("dark-mode")) {
+        modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      } else {
+        modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      }
     }
   </script>
 </body>
