@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>4 Méně Známé, Ale Moderní Kryptoměny Pro Vaše Investice</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...vy-gozd..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     * {
       box-sizing: border-box;
@@ -89,10 +90,18 @@
       color: #333;
     }
 
+    .light-mode .mode-toggle i {
+      color: #000;
+    }
+
     /* Styly pro dark mode */
     .dark-mode {
       background-color: #333;
       color: #f5f5f5;
+    }
+
+    .dark-mode .mode-toggle i {
+      color: #fff;
     }
 
     /* Styly pro dark mode u crypto-card */
@@ -107,6 +116,32 @@
       color: #f5f5f5;
     }
 
+    /* Odstranění kružnice za sluncem */
+    .dark-mode .crypto-card img[src$="stellar-image.png"] {
+      filter: none;
+      background-color: transparent;
+      border-radius: 0;
+    }
+
+    /* Ikony pro přepínání módu */
+    .mode-toggle {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #f5f5f5;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .mode-toggle i {
+      font-size: 20px;
+    }
   </style>
 </head>
 
@@ -133,39 +168,26 @@
     </div>
 
     <div class="crypto-card">
-      <h2>Stellar (XLM)</h2>
-      <img src="stellar-image.png" alt="Stellar" />
-      <p>Stellar je významná open-source blockchainová platforma navržená pro rychlé a nízkonákladové převody hodnoty mezi různými měnami. Jeho cílem je usnadnit finanční integraci a inkluzi na globální úrovni. Stellar se vyznačuje schopností provádět rychlé transakce s minimálními poplatky, což je atraktivní pro jednotlivce i finanční instituce.</p>
+      <h2>Zilliqa (ZIL)</h2>
+      <img src="zilliqa-image.png" alt="Zilliqa" />
+      <p>Zilliqa je škálovatelná blockchainová platforma, která se zaměřuje na řešení problémů výkonu a škálovatelnosti, s nimiž se běžně potýkají blockchainové sítě. Zilliqa používá inovativní technologii nazvanou "sharding", která umožňuje sítí škálovat lineárně s rostoucím počtem uživatelů. Tímto způsobem Zilliqa nabízí vysokou propustnost a rychlost transakcí, což ji činí atraktivní pro podnikové aplikace a decentralizované finance.</p>
     </div>
 
     <div class="footer">
-      <p>Toto je pouze stručný přehled těchto moderních kryptoměn. Pokud vás některá z nich zaujala, doporučuji provést další výzkum a zvážit možnosti investování. Buďte na špici nových technologií a objevujte potenciál kryptoměn.</p>
-      <p>Doufám, že vám tento přehled přinesl užitečné informace a inspiraci pro vaše investiční rozhodnutí. Pokud máte nějaké otázky nebo požadavky na další obsah, neváhejte se podělit v komentářích.</p>
-      <p>Těším se na vaše další čtení a přeji vám hodně úspěchů ve světě kryptoměn!</p>
-      <p>Pamatujte, že je důležité pravidelně aktualizovat informace o kryptoměnách a sledovat vývoj na trhu, abyste zůstali informovaní o nejnovějších trendech a událostech.</p>
+      <p>Tento článek je poskytován pouze pro informační účely. Před jakýmkoliv investováním do kryptoměn se poraďte s finančním odborníkem.</p>
+      <p>Vytvořeno s láskou od <a href="https://www.example.com">Cryptoblog</a></p>
     </div>
+  </div>
 
+  <div class="mode-toggle" onclick="toggleMode()">
+    <i class="fas fa-sun"></i>
   </div>
 
   <script>
-    // Získání elementu body
-    const body = document.querySelector('body');
-
-    // Získání stavu módu ze localStorage
-    const mode = localStorage.getItem('mode');
-
-    // Funkce pro nastavení módu
-    function setMode(mode) {
-      body.classList.remove('light-mode', 'dark-mode');
-      body.classList.add(mode);
-      localStorage.setItem('mode', mode);
+    function toggleMode() {
+      const body = document.body;
+      body.classList.toggle("dark-mode");
     }
-
-    // Pokud je uložený stav módu, nastaví ho
-    if (mode) {
-      setMode(mode);
-    }
-
   </script>
 </body>
 
