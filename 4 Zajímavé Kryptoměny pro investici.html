@@ -178,14 +178,39 @@
   </div>
 
   <script>
+    // Získání aktuálního módu ze storage (default je light mode)
+    const mode = localStorage.getItem('mode') || 'light-mode';
+    applyMode(mode);
+
     function toggleMode() {
-      const body = document.querySelector("body");
-      const modeToggle = document.querySelector(".mode-toggle");
-      body.classList.toggle("dark-mode");
-      if (body.classList.contains("dark-mode")) {
-        modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-      } else {
+      const body = document.body;
+      const modeToggle = document.querySelector('.mode-toggle');
+      const isDarkMode = body.classList.contains('dark-mode');
+
+      body.classList.toggle('dark-mode', !isDarkMode);
+      body.classList.toggle('light-mode', isDarkMode);
+
+      if (body.classList.contains('dark-mode')) {
         modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        localStorage.setItem('mode', 'dark-mode');
+      } else {
+        modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        localStorage.setItem('mode', 'light-mode');
+      }
+    }
+
+    function applyMode(mode) {
+      const body = document.body;
+      const modeToggle = document.querySelector('.mode-toggle');
+      const isDarkMode = mode === 'dark-mode';
+
+      body.classList.toggle('dark-mode', isDarkMode);
+      body.classList.toggle('light-mode', !isDarkMode);
+
+      if (isDarkMode) {
+        modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
       }
     }
   </script>
